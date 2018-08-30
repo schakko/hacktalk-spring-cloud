@@ -1,0 +1,30 @@
+server:
+  port: 8000
+  
+spring:
+  application:
+    # register ourself as "zuul-proxy" endpoint
+    name: zuul-proxy
+
+eureka:
+  client:
+    service-url:
+      defaultZone:
+        http://localhost:8200/eureka/
+
+zuul:
+  routes:
+    # Map the /auth endpoint of *this* proxy instance to http://authentication-microservice/
+    authentication:
+      path: "/auth"
+      serviceId: "authentication"
+    # Map /echo endpoint of this proxy instance to http://echo-microservice. The "/echo" resource is automatically created as Zuul uses the serviceId as locator
+    echo:
+      serviceId: echo
+
+# expose all endpoints, including Spring Cloud's /actuator/filters and /actuator/routes
+management:
+  endpoints:
+    web:
+      exposure:
+        include: "*"

@@ -1,4 +1,4 @@
-package de.schakko.cloud.eurekaclient;
+package de.schakko.cloud;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
@@ -6,9 +6,9 @@ import org.springframework.cloud.client.discovery.EnableDiscoveryClient;
 
 @EnableDiscoveryClient
 @SpringBootApplication
-public class EurekaClientApplication {
+public class EchoMicroservice {
 
 	public static void main(String[] args) {
-		SpringApplication.run(EurekaClientApplication.class, args);
+		SpringApplication.run(EchoMicroservice.class, args);
 	}
 }

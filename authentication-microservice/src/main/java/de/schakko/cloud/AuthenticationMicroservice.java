@@ -1,15 +1,14 @@
-package de.schakko.cloud.zuulproxy;
+package de.schakko.cloud;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.cloud.client.discovery.EnableDiscoveryClient;
-import org.springframework.cloud.netflix.zuul.EnableZuulProxy;
 
-@SpringBootApplication
-@EnableZuulProxy
 @EnableDiscoveryClient
-public class ZuulProxyApplication {
+@SpringBootApplication
+public class AuthenticationMicroservice {
+
 	public static void main(String[] args) {
-		SpringApplication.run(ZuulProxyApplication.class, args);
+		SpringApplication.run(AuthenticationMicroservice.class, args);
 	}
 }
