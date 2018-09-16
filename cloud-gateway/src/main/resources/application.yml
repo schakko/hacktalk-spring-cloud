@@ -1,0 +1,39 @@
+server:
+  port: 8000
+
+logging:
+  level:
+    org:
+      springframework:
+        cloud:
+          gateway: debug
+            
+spring:
+  application:
+    # register ourself as "cloud-gateway" endpoint
+    name: cloud-gateway
+  cloud:
+    gateway:
+      discovery:
+        locator:
+          enabled: true
+          # see https://github.com/spring-cloud/spring-cloud-gateway/issues/302#issuecomment-408610418
+          lower-case-service-id: true
+      default-filters:
+        - AddRequestHeader=X-Cloud-Gateway-Incoming, true
+      routes:
+      # overwriting specific lb://* service definitions resolved from Eureka doesn't work yet. Precedence is always with Eureka and not our own route.
+      # see https://github.com/spring-cloud/spring-cloud-gateway/issues/494
+        
+eureka:
+  client:
+    service-url:
+      defaultZone:
+        http://localhost:8200/eureka/
+
+# expose all endpoints, including Spring Cloud's /actuator/filters and /actuator/routes
+management:
+  endpoints:
+    web:
+      exposure:
+        include: "*"
